@@ -4,10 +4,10 @@ import "@nomicfoundation/hardhat-toolbox";
 import "hardhat-circom";
 // circuits
 import circuits = require('./circuits.config.json')
+import 'dotenv/config';
 
 // set env var to the root of the project
 process.env.BASE_PATH = __dirname;
-
 // tasks
 import "./tasks/newcircuit.ts"
 
@@ -15,13 +15,18 @@ const config: HardhatUserConfig = {
   solidity: {
     compilers: [
       {
-        version: "0.8.17",
+        version: "0.8.19",
       },
       {
         version: "0.6.11",
       }
     ]
   },
+  networks:{
+  mumbai: { url :`https://polygon-mumbai.g.alchemy.com/v2/xYD2bZsKa0S4r-a6-UcCkGOPdyCRhZXe` ,
+  accounts: [process.env.POLYGONMUMBAIPRIVATEKEY]
+ }
+},
   circom: {
     // (optional) Base path for input files, defaults to `./circuits/`
     inputBasePath: "./circuits",
